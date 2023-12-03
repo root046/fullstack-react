@@ -1,48 +1,22 @@
-import { Component } from 'react';
 import './App.css';
+import FirstComponent from './components/learning-examples/FirstComponent'
+import SecondComponent from './components/learning-examples/SecondComponent'
+import ThirdComponent from './components/learning-examples/ThirdComponent'
+import FourthComponent from './components/learning-examples/FourthComponent'
+import {FifthComponent} from './components/learning-examples/FourthComponent'
 
 function App() {
   return (
     <div className="App">
-      My ToDo Application 
+      My ToDo Application
 
       <FirstComponent></FirstComponent>
       <SecondComponent></SecondComponent>
       <ThirdComponent/>
-      <FourthComponent/>  
+      <FourthComponent/>
+      <FifthComponent/>
     </div>
   );
-}
-
-function FirstComponent(){
-  return (
-    <div className="FirstComponent">First Component</div>
-  )
-}
-
-function SecondComponent(){
-  return(
-    <div className='SecondComponent'>Second Component</div>
-  )
-}
-
-class ThirdComponent extends Component{
-  render(){
-    return(
-      <div className='ThirdComponent'>Third Component</div>
-    )
-  }
-}
-
-class FourthComponent extends Component{
-  render(){
-    return(
-      <someTag>
-        <div className='SomeComponent'>Some Component</div>
-        <div className='SomeComponent'>Some Component</div>
-      </someTag>
-    )
-  }
 }
 
 export default App;
