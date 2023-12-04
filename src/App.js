@@ -1,4 +1,5 @@
 import './App.css';
+import Counter from './components/counter/Counter';
 import AllModules from './components/learning-examples/AllComponent';
 
 
@@ -8,6 +9,7 @@ function App() {
       My ToDo Application
 
       <AllModules />
+      <Counter/>
     </div>
   );
 }
