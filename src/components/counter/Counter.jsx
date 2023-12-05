@@ -1,3 +1,5 @@
+import './Counter.css'
+
 export default function Counter(){
     function incrememntCounterFunction(){
         console.log('increment clicked')
@@ -6,7 +8,11 @@ export default function Counter(){
     return(
         <div className="Counter">
             <span className="count">0</span>
-            <button className="counterButton" onClick={incrememntCounterFunction}>increment</button>
+            <div>
+                <button className="counterButton" 
+                    onClick={incrememntCounterFunction}
+                >+1</button>
+            </div>
         </div>
     )
 }
