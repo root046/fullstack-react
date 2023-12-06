@@ -6,7 +6,9 @@ function App() {
     <div className="App">
       My ToDo Application
       
-      <Counter />
+      <Counter />{/* the devault value is 1 */}
+      <Counter by={2}/>
+      <Counter by={3}/>
     </div>
   );
 }
