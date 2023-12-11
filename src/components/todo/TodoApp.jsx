@@ -12,8 +12,11 @@ export default function TodoApp() {
 
 function LoginComponent() {
 
-    const [username, setUsername] = useState('tset')
-    const [password, setPassword] = useState('tset')
+    const [username, setUsername] = useState('test')
+    const [password, setPassword] = useState('0000')
+
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
 
     function handleUsernameChange(event) {
         setUsername(event.target.value)
@@ -23,8 +26,34 @@ function LoginComponent() {
         setPassword(event.target.value)
     }
 
+    function handleSubmit() {
+        if (username === 'test' && password === '0000') {
+            console.log('Success')
+            setShowSuccessMessage(true)
+            setShowErrorMessage(false)
+        } else {
+            console.log('Faild')
+            setShowErrorMessage(true)
+            setShowSuccessMessage(false)
+        }
+    }
+
+    function SuccessMessageComponent() {
+        if (showSuccessMessage) {
+            return <div className='successMessage'>Authenticated Successfully</div>
+        } return null
+    }
+
+    function ErrorMessageComponent() {
+        if (showErrorMessage) {
+            return <div className='errorMessage'>Authenticated Failed. Please check your credentials.</div>
+        } return null
+    }
+
     return (
         <div className="Login">
+            <SuccessMessageComponent />
+            <ErrorMessageComponent />
             <div className="LoginForm">
                 <div>
                     <label>User Name</label>
@@ -36,7 +65,7 @@ function LoginComponent() {
                 </div>
             </div>
             <div>
-                <button type="button" name="login">login</button>
+                <button type="button" name="login" onClick={handleSubmit}>login</button>
             </div>
         </div>
     )
