@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
 import './TodoApp.css'
 export default function TodoApp() {
     return (
@@ -80,7 +80,7 @@ function WelcomeComponent() {
         <div className="Login">
             <h1>Welcome {username} To ToDo Application</h1>
             <div>
-                Welcome Component
+                Manage Your Todos - <Link to='/todos'>Go Here</Link>
             </div>
         </div>
     )
@@ -95,10 +95,13 @@ function NotFoundComponent() {
 }
 
 function ListToDosComponent() {
+    const today = new Date()
+    const targetDate = new Date(today.getFullYear()+1,today.getMonth(),today.getDay())
+
     const todos = [
-        { id: 1, description: 'Learn React' },
-        { id: 2, description: 'Learn FullStack Development' },
-        { id: 3, description: 'Learn SpringBoot' },
+        { id: 1, description: 'Learn React',done:false,targetDate:targetDate },
+        { id: 2, description: 'Learn FullStack Development',done:false,targetDate:targetDate },
+        { id: 3, description: 'Learn SpringBoot',done:false,targetDate:targetDate },
 
     ]
 
@@ -111,6 +114,8 @@ function ListToDosComponent() {
                         <tr>
                             <td>id</td>
                             <td>description</td>
+                            <td>Is Done ?</td>
+                            <td>Target Date</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -120,6 +125,8 @@ function ListToDosComponent() {
                                     <tr key={todo.id}>
                                         <td>{todo.id}</td>
                                         <td>{todo.description}</td>
+                                        <td>{todo.done.toString()}</td>
+                                        <td>{todo.targetDate.toString()}</td>
                                     </tr>
                                 )
                             )
