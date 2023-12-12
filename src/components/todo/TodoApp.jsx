@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter,Routes,Route,useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import './TodoApp.css'
 export default function TodoApp() {
     return (
@@ -8,11 +8,12 @@ export default function TodoApp() {
                 <Routes>
                     <Route path='/' element={<LoginComponent />}></Route>
                     <Route path='/login' element={<LoginComponent />}></Route>
-                    <Route path='/welcome' element={<WelcomeComponent/>}></Route>
+                    <Route path='/welcome' element={<WelcomeComponent />}></Route>
+                    <Route path='*' element={<NotFoundComponent />}></Route>
                 </Routes>
             </BrowserRouter>
-            
-            
+
+
         </div>
     )
 }
@@ -50,7 +51,9 @@ function LoginComponent() {
 
     return (
         <div className="Login">
-            {showSuccessMessage &&  <div className='successMessage'>Authenticated Successfully</div>}
+            <h1>Time To Login!</h1>
+
+            {showSuccessMessage && <div className='successMessage'>Authenticated Successfully</div>}
             {showErrorMessage && <div className='errorMessage'>Authenticated Failed. Please check your credentials.</div>}
             <div className="LoginForm">
                 <div>
@@ -72,7 +75,18 @@ function LoginComponent() {
 function WelcomeComponent() {
     return (
         <div className="Login">
-            Welcome Component
+            <h1>Welcome To ToDo Application</h1>
+            <div>
+                Welcome Component
+            </div>
+        </div>
+    )
+}
+
+function NotFoundComponent() {
+    return (
+        <div className='NotFoundComponent'>
+            <h1>Not Found 404</h1>
         </div>
     )
 }
