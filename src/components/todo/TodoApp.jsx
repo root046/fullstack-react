@@ -111,10 +111,10 @@ function ListToDosComponent() {
     ]
 
     return (
-        <div className='ListToDosComponent'>
+        <div className='container'>
             <h1>Things You Want To Do!</h1>
             <div>
-                <table>
+                <table className='table'>
                     <thead>
                         <tr>
                             <td>id</td>
