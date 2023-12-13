@@ -4,20 +4,20 @@ import './TodoApp.css'
 export default function TodoApp() {
     return (
         <div className="TodoApp">
-            <HeaderComponent/>
 
             <BrowserRouter>
+                <HeaderComponent />
                 <Routes>
                     <Route path='/' element={<LoginComponent />}></Route>
                     <Route path='/login' element={<LoginComponent />}></Route>
                     <Route path='/welcome/:username' element={<WelcomeComponent />}></Route>
                     <Route path='/todos' element={<ListToDosComponent />}></Route>
-                    <Route path='/logout' element={<LogoutComponent/>}></Route>
+                    <Route path='/logout' element={<LogoutComponent />}></Route>
                     <Route path='*' element={<NotFoundComponent />}></Route>
                 </Routes>
+                <FooterComponent />
             </BrowserRouter>
 
-            <FooterComponent/>
 
 
         </div>
@@ -101,12 +101,12 @@ function NotFoundComponent() {
 
 function ListToDosComponent() {
     const today = new Date()
-    const targetDate = new Date(today.getFullYear()+1,today.getMonth(),today.getDay())
+    const targetDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDay())
 
     const todos = [
-        { id: 1, description: 'Learn React',done:false,targetDate:targetDate },
-        { id: 2, description: 'Learn FullStack Development',done:false,targetDate:targetDate },
-        { id: 3, description: 'Learn SpringBoot',done:false,targetDate:targetDate },
+        { id: 1, description: 'Learn React', done: false, targetDate: targetDate },
+        { id: 2, description: 'Learn FullStack Development', done: false, targetDate: targetDate },
+        { id: 3, description: 'Learn SpringBoot', done: false, targetDate: targetDate },
 
     ]
 
@@ -143,28 +143,45 @@ function ListToDosComponent() {
     )
 }
 
-function HeaderComponent(){
-    return(
-        <div className='HeaderComponent'>
-            Header<hr/>
-        </div>
+function HeaderComponent() {
+    return (
+        <header className="border-bottom border-light border-5 mb-5 p-2">
+            <div className="container">
+                <div className="row">
+                    <nav className="navbar navbar-expand-lg">
+                        <Link className="nav-link" to="/welcome/bader">Home</Link>
+                        <div className="collapse navbar-collapse">
+                            <ul className="navbar-nav">
+                                <li className="nav-item fs-5"><Link className="nav-link" to="/todos">Todos</Link></li>
+                            </ul>
+                        </div>
+                        <ul className="navbar-nav">
+                            <li className="nav-item fs-5"><Link className="nav-link" to="/login">Login</Link></li>
+                            <li className="nav-item fs-5"><Link className="nav-link" to="/logout">Logout</Link></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
     )
 }
 
-function FooterComponent(){
-    return(
-        <div className='FooterComponent'>
-            <hr/>Footer
-        </div>
+function FooterComponent() {
+    return (
+        <footer className='FooterComponent'>
+            <div className='container'>
+                Footer
+            </div>
+        </footer>
     )
 }
 
-function LogoutComponent(){
-    return(
+function LogoutComponent() {
+    return (
         <div className='LogoutComponent'>
             <h1>You Are Logged Out!</h1>
             <div>
-            Thank you for using our App. Come back soon!
+                Thank you for using our App. Come back soon!
             </div>
         </div>
     )
