@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { useContext } from "react";
+import { useContext } from "react"
 import { AuthContext } from "./security/AuthContext"
 
 function FooterComponent() {
