@@ -3,7 +3,7 @@ import { AuthContext } from "./security/AuthContext"
 
 function FooterComponent() {
     const authContext = useContext(AuthContext)
-    console.log(`Footer Component -${authContext.number}`)
+    // console.log(`Footer Component => ${authContext.number}`)
     return (
         <footer className='FooterComponent'>
             <div className='container'>
