@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
-import { getHelloWorld } from './api/HelloWorldApiService'
+import { getHelloWorld, getHelloWorldPathVariable } from './api/HelloWorldApiService'
 
 function WelcomeComponent() {
 
@@ -10,7 +10,7 @@ function WelcomeComponent() {
 
     function callHelloWorldRestApi() {
         //axios
-        getHelloWorld()
+        getHelloWorldPathVariable('bader')
             .then((response) => successfulResponse(response))
             .catch((error) => errorResponse(error))
             .finally(() => console.log('cleanUp'))
@@ -18,7 +18,7 @@ function WelcomeComponent() {
 
     function successfulResponse(response) {
         console.log(response)
-        setMessage(response.data)
+        setMessage(response.data.message)
     }
 
     function errorResponse(error) {
