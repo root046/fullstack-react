@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
-import {useState} from 'react'
+import { useState } from 'react'
+import { getHelloWorld } from './api/HelloWorldApiService'
 
 function WelcomeComponent() {
 
@@ -10,20 +10,10 @@ function WelcomeComponent() {
 
     function callHelloWorldRestApi() {
         //axios
-
-        axios.get('http://localhost:8080/hello-word', {
-            auth: {
-                username: 'bader',
-                password: '00'
-            },
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        getHelloWorld()
             .then((response) => successfulResponse(response))
             .catch((error) => errorResponse(error))
             .finally(() => console.log('cleanUp'))
-
     }
 
     function successfulResponse(response) {
