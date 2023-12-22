@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from './security/AuthContext'
 function LoginComponent() {
 
-    const [username, setUsername] = useState('test')
+    const [username, setUsername] = useState('root')
     const [password, setPassword] = useState('0000')
 
     const [showErrorMessage, setShowErrorMessage] = useState(false)
