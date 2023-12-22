@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {useAuth} from "../security/AuthContext";
 
 const apiClient = axios.create(
     {
@@ -6,10 +7,18 @@ const apiClient = axios.create(
     }
 );
 
-export const getTodosByUsername
+export const getTodosByUsernameApi
     = (username) => apiClient.get(`/users/${username}/todos`, {
         auth: {
             username: 'root',
             password: '0000'
         }
     })
+
+export const deleteTodosByIdApi
+    = (username,id) => apiClient.delete(`/users/${username}/todos/${id}`,{
+        auth: {
+            username: 'root',
+            password: '0000'
+        }
+})
