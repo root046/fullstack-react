@@ -22,3 +22,11 @@ export const deleteTodosByIdApi
             password: '0000'
         }
 })
+
+export const getTodoByUsernameAndIdApi
+    =(username,id) => apiClient.get(`/users/${username}/todos/${id}`,{
+        auth: {
+            username: 'root',
+            password: '0000'
+        }
+})

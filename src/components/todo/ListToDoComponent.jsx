@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import {deleteTodosByIdApi, getTodosByUsernameApi} from "./api/ToDoApiService"
+import {deleteTodosByIdApi, getTodoByUsernameAndIdApi, getTodosByUsernameApi} from "./api/ToDoApiService"
 import { useAuth } from "./security/AuthContext"
+import {useNavigate} from "react-router-dom";
 
 function ListToDosComponent() {
 
@@ -12,6 +13,8 @@ function ListToDosComponent() {
 
     const [todos, setTodos] = useState([])
     const [message,setMessage] = useState(null)
+
+    const navigate = useNavigate()
 
     // const todos = [
     //     { id: 1, description: 'Learn React', done: false, targetDate: targetDate },
@@ -25,7 +28,7 @@ function ListToDosComponent() {
         () => refreshTodos(),[]
     )
 
-    function refreshTodos() {
+     function refreshTodos() {
         getTodosByUsernameApi(username)
             .then( response =>{
                 console.log(response)
@@ -48,6 +51,10 @@ function ListToDosComponent() {
             .catch(error => console.log(error))
     }
 
+    function updateTodo(id) {
+        navigate(`/todo/${id}`)
+    }
+
     return (
         <div className='container'>
             <h1>Things You Want To Do!</h1>
@@ -60,6 +67,7 @@ function ListToDosComponent() {
                             <th>Is Done ?</th>
                             <th>Target Date</th>
                             <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +79,7 @@ function ListToDosComponent() {
                                         <td>{todo.isDone.toString()}</td>
                                         <td>{todo.targetDate.toString()}</td>
                                         <td><button className="btn btn-warning" onClick={()=>deleteTodo(todo.id)}>Delete</button> </td>
+                                        <td><button className="btn btn-success" onClick={()=>updateTodo(todo.id)}>Update</button> </td>
                                     </tr>
                                 )
                             )
