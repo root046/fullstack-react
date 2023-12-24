@@ -30,3 +30,14 @@ export const getTodoByUsernameAndIdApi
             password: '0000'
         }
 })
+
+export const updateTodoApi
+    =(username,id,todo) => apiClient.put(`/users/${username}/todos/${id}`,
+    todo,
+    {
+        auth: {
+            username: 'root',
+            password: '0000'
+        }
+    }
+)
