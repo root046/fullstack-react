@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import {executeBasicAuthenticationService} from "../api/ToDoApiService";
 
 //1: Create a Context
 export const AuthContext = createContext()
@@ -18,16 +19,37 @@ export default function AuthProvider({ children }) {
 
     // const valueToBeShared = { number, isAuthenticated, setAuthenticated }
 
+    // function login(username, password) {
+    //     if (username === 'root' && password === '0000') {
+    //         setAuthenticated(true)
+    //         setUsername(username)
+    //         return true
+    //     } else {
+    //         setAuthenticated(false)
+    //         setUsername(null)
+    //         return false
+    //     }
+    // }
+
     function login(username, password) {
-        if (username === 'root' && password === '0000') {
-            setAuthenticated(true)
-            setUsername(username)
-            return true
-        } else {
-            setAuthenticated(false)
-            setUsername(null)
-            return false
-        }
+
+        const vaToken = 'Basic ' + window.btoa(username + ":" + password)
+
+        executeBasicAuthenticationService(vaToken)
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
+
+        setAuthenticated(false)
+
+        // if (username === 'root' && password === '0000') {
+        //     setAuthenticated(true)
+        //     setUsername(username)
+        //     return true
+        // } else {
+        //     setAuthenticated(false)
+        //     setUsername(null)
+        //     return false
+        // }
     }
 
     function logout() {
