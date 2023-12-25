@@ -14,6 +14,7 @@ export default function AuthProvider({ children }) {
     //3:Put some state in the context
     const [isAuthenticated, setAuthenticated] = useState(false)
     const [username, setUsername] = useState(null)
+    const [token,setToken] = useState(null)
 
     // setInterval(() => setNumber(number + 1), 10000)
 
@@ -31,33 +32,37 @@ export default function AuthProvider({ children }) {
     //     }
     // }
 
-    function login(username, password) {
+    async function login(username, password) {
 
         const vaToken = 'Basic ' + window.btoa(username + ":" + password)
 
-        executeBasicAuthenticationService(vaToken)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
+        try {
+            const response = await executeBasicAuthenticationService(vaToken);
+            console.log(response)
+            if (response.data==='Success') {
+                setAuthenticated(true)
+                setUsername(username)
+                setToken(vaToken)
+                return true
+            } else {
+                logout()
+                return false
+            }
+        } catch (error) {
+            logout()
+            return false
+        }
 
-        setAuthenticated(false)
-
-        // if (username === 'root' && password === '0000') {
-        //     setAuthenticated(true)
-        //     setUsername(username)
-        //     return true
-        // } else {
-        //     setAuthenticated(false)
-        //     setUsername(null)
-        //     return false
-        // }
     }
 
     function logout() {
         setAuthenticated(false)
+        setToken(null)
+        setUsername(null)
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout,username }}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout,username,token }}>
             {children}
         </AuthContext.Provider>
     )
