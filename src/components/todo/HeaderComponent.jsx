@@ -6,10 +6,17 @@ function HeaderComponent() {
     const authContext = useAuth()
 
     const isAuthenticated = authContext.isAuthenticated
+    const username = authContext.username
+    const token = authContext.token
 
     console.log(authContext)
 
     function logout() {
+
+        isAuthenticated(false)
+        token(null)
+        username(null)
+
         authContext.logout()
     }
 
