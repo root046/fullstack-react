@@ -1,21 +1,17 @@
-import axios from 'axios'
-
-const apiClient = axios.create(
-    {
-        baseURL: 'http://localhost:8080'
-    }
-);
+import {apiClient2} from "./ApiClient";
 
 export function getHelloWorld() {
-    return apiClient.get('/hello-word', {
-        auth: {
-            username: 'bader',
-            password: '00'
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    return apiClient2.get('/hello-word'
+    //     , {
+    //     auth: {
+    //         username: 'bader',
+    //         password: '00'
+    //     },
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }
+    )
 }
 
 // this is also another way
@@ -30,15 +26,7 @@ export function getHelloWorld() {
 // })
 
 export function getHelloWorldPathVariable(name) {
-    return apiClient.get(`/hello-word/path-variable/${name}`, {
-        auth: {
-            username: 'bader',
-            password: '00'
-        },
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    return apiClient2.get(`/hello-word/path-variable/${name}`)
 }
 
 // export const getHelloWorldPathVariable = (name) => apiClient.get(`/hello-word/path-variable/${name}`, {
