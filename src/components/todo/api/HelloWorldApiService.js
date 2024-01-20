@@ -26,7 +26,16 @@ export function getHelloWorld() {
 // })
 
 export function getHelloWorldPathVariable(name) {
-    return apiClient2.get(`/hello-word/path-variable/${name}`)
+    return apiClient2.get(`/hello-word/path-variable/${name}`
+        , {
+        auth: {
+            username: 'bader',
+            password: '00'
+        },
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
 }
 
 // export const getHelloWorldPathVariable = (name) => apiClient.get(`/hello-word/path-variable/${name}`, {
